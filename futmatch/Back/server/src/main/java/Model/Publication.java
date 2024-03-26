@@ -1,4 +1,4 @@
-package database;
+package Model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -28,5 +28,7 @@ public class Publication {
         liked.add(user);
     }
 
+    public void isPublishedBy(User user) {
+    }
 }
 

@@ -1,4 +1,4 @@
-package database;
+package Model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
