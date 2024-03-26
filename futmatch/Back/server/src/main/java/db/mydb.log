@@ -10,3 +10,71 @@ DISCONNECT
 DISCONNECT
 /*C8*/SET SCHEMA PUBLIC
 DISCONNECT
+/*C7*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C12*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C11*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C10*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C13*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C9*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C14*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C15*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C16*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C17*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C18*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C19*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C20*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C21*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C22*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C23*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C24*/SET SCHEMA PUBLIC
+drop table if exists Publication CASCADE 
+drop table if exists Publication_User CASCADE 
+drop table if exists User CASCADE 
+drop sequence hibernate_sequence if exists
+drop sequence userGen if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create sequence userGen start with 1 increment by 50
+create table Publication (id bigint not null, creationDate timestamp, description varchar(255), author_id bigint, primary key (id))
+create table Publication_User (likes_id bigint not null, liked_id bigint not null)
+create table User (id bigint not null, email varchar(255) not null, firstName varchar(255), lastName varchar(255), primary key (id))
+alter table User add constraint UK_e6gkqunxajvyxl5uctpl2vl2p unique (email)
+alter table Publication add constraint FKstw115wm4ynpei2q7smp2h7xm foreign key (author_id) references User
+alter table Publication_User add constraint FK6cgdlq9kgsvjjrikf5lxsjf44 foreign key (liked_id) references User
+alter table Publication_User add constraint FKkpbhsnuv8nvwmaw0liw3fw3vo foreign key (likes_id) references Publication
+INSERT INTO USER VALUES(1,'luke.skywalker@jedis.org','Luke','Skywalker')
+INSERT INTO PUBLICATION VALUES(1,'2024-03-26 12:24:30.338756','Just had an epic lightsaber duel with my sister, Leia! May the Force be with us always. #JediFamily #SiblingRivalry #TheForceIsStrong',1)
+INSERT INTO PUBLICATION VALUES(2,'2024-03-26 12:24:30.338756','Exploring the galaxy with my trusty droid R2-D2. It''s amazing to see all the wonders of the universe. #SpaceExplorer',1)
+INSERT INTO PUBLICATION VALUES(3,'2024-03-26 12:24:30.338756','Remembering my mentor and friend, Obi-Wan Kenobi. His wisdom and guidance continue to inspire me on my journey. #JediLegacy #MayTheForceBeWithYou #ObiWanKenobi',1)
+INSERT INTO USER VALUES(2,'leia.skywalker@jedis.org','Leia','Skywalker')
+INSERT INTO PUBLICATION VALUES(4,'2024-03-26 12:24:30.338756','Taking a break from the battlefield to enjoy some time with my husband, Han Solo. He may be a scoundrel, but he''s the love of my life. #SpaceRomance #HanAndLeia #LoveInTheGalaxy',2)
+INSERT INTO PUBLICATION VALUES(5,'2024-03-26 12:24:30.338756','Celebrating the victories of the Rebellion with my friends and allies. We''ve been through so much together, but our bond only grows stronger. #RebelFamily #VictoryCelebration #TogetherWeRise',2)
+INSERT INTO USER VALUES(3,'rey.skywalker@jedis.org','Rey','Skywalker')
+INSERT INTO PUBLICATION VALUES(6,'2024-03-26 12:24:30.338756','Embracing my identity as a Skywalker. My journey has been long and difficult, but I''m proud of who I am and where I come from. #SkywalkerPride #TheForceIsMyFamily #NeverAlone',3)
+INSERT INTO PUBLICATION VALUES(7,'2024-03-26 12:24:30.338756','Celebrating the victories of the Rebellion with my friends and allies. We''ve been through so much together, but our bond only grows stronger. #RebelFamily #VictoryCelebration #TogetherWeRise',3)
+INSERT INTO USER VALUES(4,'ben.sole@jedis.org','Ben','Solo')
+INSERT INTO PUBLICATION VALUES(8,'2024-03-26 12:24:30.338756','Making amends for my past mistakes. I know I can never fully make up for the pain I''ve caused, but I will do everything in my power to make things right. #Redemption #Forgiveness #TheJourneyBackToTheLight',4)
+INSERT INTO PUBLICATION VALUES(9,'2024-03-26 12:24:30.338756','Discovering my true identity as Ben Solo. It hasn''t been an easy road, but I''m grateful for the lessons I''ve learned. #SelfDiscovery #FindingMyself #TheTruthWillSetYouFree',4)
+INSERT INTO PUBLICATION VALUES(10,'2024-03-26 12:24:30.338756','Finding strength in my friendships with Finn, Poe, and BB-8. Together, we can accomplish anything. #JediFriends #TeamworkMakesTheDreamWork #TheForceIsStrong',4)
+INSERT INTO PUBLICATION_USER VALUES(2,4)
+INSERT INTO PUBLICATION_USER VALUES(4,3)
+INSERT INTO PUBLICATION_USER VALUES(4,4)
+ALTER SEQUENCE PUBLIC.USERGEN RESTART WITH 101
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 11
+COMMIT
+DISCONNECT

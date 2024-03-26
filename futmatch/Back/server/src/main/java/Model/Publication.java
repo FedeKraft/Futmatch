@@ -24,11 +24,46 @@ public class Publication {
     @ManyToMany()
     private final List<User> liked = new ArrayList<>();
 
+    public Publication(String description) {
+        this.description = description;
+        this.creationDate = LocalDateTime.now();
+    }
+
+    public Publication() {}
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void isPublishedBy(User author) {
+        this.author = author;
+    }
+
     public void isLikedBy(User user) {
         liked.add(user);
     }
 
-    public void isPublishedBy(User user) {
+    public List<User> getLikes() {
+        return liked;
     }
 }
-
